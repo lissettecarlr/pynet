@@ -1,0 +1,7 @@
+mqtt:
+  serverName : ""
+  serverPassword : ""
+  serverIp : ""
+  serverPort : 1884
+  id : "test"
+  reciveTopic : "unknown/test/"
