@@ -8,6 +8,18 @@ pip loguru
 pip install paho-mqtt
 ```
 
+## 测试
+修改config.yaml，设置自己的mqtt服务器
+启动
+```
+python main.py
+```
+然后使用mqtt客户端发送
+主题：unknown/test/test/task2
+```
+"url":"https://123.jpg",
+"msgId":"123"
+```
 ## 其他
 
 ### yaml
