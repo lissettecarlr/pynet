@@ -37,7 +37,7 @@ import yaml
 
 with open("./config.yaml") as config:
     cfg = yaml.safe_load(config)
-netTask = mqttClient.mqttClient(
+netTask = mqttClient(
     cfg["mqtt"]["serverName"],
     cfg["mqtt"]["serverPassword"],
     cfg["mqtt"]["serverIp"],
@@ -45,6 +45,10 @@ netTask = mqttClient.mqttClient(
     cfg["mqtt"]["id"],
     cfg["mqtt"]["reciveTopic"],
 )
+
+box = messageBox()
+netTask.setCallback(netStatusCb,box.input)
+netTask.start()
 ```
 
 ## 其他
