@@ -1,5 +1,5 @@
 # pynet
-python的网络通信模板
+python的网络通信模板，V010
 
 ## 环境
 ```
@@ -20,6 +20,26 @@ python main.py
 "url":"https://123.jpg",
 "msgId":"123"
 ```
+
+## 使用
+* 将pynet扔进工程中，修改config.yaml服务器配置。
+* 修改messageBox.py，作为接收命令处理，例如引入
+```
+sys.path.append("..") 
+from app.actionDetection import actionDetection
+from net.utils import download
+```
+* 主函数
+```
+from net.mqttClient import mqttClient
+from net.messageBox import messageBox
+
+netTask = mqttClient.mqttClient()
+box = messageBox.messageBox()
+netTask.setCallback(netStatusCb,box.input)
+netTask.start()
+```
+
 ## 其他
 
 ### yaml

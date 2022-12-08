@@ -64,19 +64,19 @@ class messageBox:
                 imgUrl = resp["url"]
             except:
                 logger.warning("字段错误")
-                res["contents"]= "字段错误" 
+                res["contents"]= "json error" 
                 return res
             # 首先检测url格式
             if((imgUrl.endswith(".jpg")==False and imgUrl.endswith(".png")==False)):
                 logger.warning("url后缀错误")
-                res["contents"]= "url后缀错误" 
+                res["contents"]= "url error" 
                 return res
 
             fileName = imgUrl[ imgUrl.rindex( '/' ) + 1 : len( imgUrl ) ]
             fileName = "downloadTask_" + str(random.randint(1000,9999)) + fileName
             #图片缓存本地，命名方式为url
             if(utils.download(imgUrl, self.downLoadPath, fileName) == False):
-                res["contents"]= "下载失败"
+                res["contents"]= "download error"
                 return res
 
             tempImg = os.path.join(self.downLoadPath,fileName)
