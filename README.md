@@ -22,22 +22,29 @@ python main.py
 ```
 
 ## 使用
-* 将pynet扔进工程中，修改config.yaml服务器配置。
+* 将pynet扔进工程中
 * 修改messageBox.py，作为接收命令处理，例如引入
 ```
 sys.path.append("..") 
 from app.actionDetection import actionDetection
 from net.utils import download
 ```
-* 主函数
+* 主函数，yaml的位置根据自己配置文件位置改
 ```
 from net.mqttClient import mqttClient
 from net.messageBox import messageBox
+import yaml
 
-netTask = mqttClient.mqttClient()
-box = messageBox.messageBox()
-netTask.setCallback(netStatusCb,box.input)
-netTask.start()
+with open("./config.yaml") as config:
+    cfg = yaml.safe_load(config)
+netTask = mqttClient.mqttClient(
+    cfg["mqtt"]["serverName"],
+    cfg["mqtt"]["serverPassword"],
+    cfg["mqtt"]["serverIp"],
+    cfg["mqtt"]["serverPort"],
+    cfg["mqtt"]["id"],
+    cfg["mqtt"]["reciveTopic"],
+)
 ```
 
 ## 其他
